@@ -13,7 +13,7 @@ import streamlit as st
 import pandas as pd
 
 # Read the expense data from CSV
-df = pd.read_csv('expenses.csv')
+df = pd.read_csv('house_building_expenditure.csv')
 
 # Function to calculate total expenses and display in Streamlit
 def calculate_expenses():
