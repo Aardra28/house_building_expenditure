@@ -8,7 +8,6 @@ st.title("house_expenditure")
 #print(data)
 #data
 
-
 import streamlit as st
 import pandas as pd
 
