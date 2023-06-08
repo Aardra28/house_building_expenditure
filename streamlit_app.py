@@ -4,7 +4,7 @@ import pandas as pd
 st.title("house_expenditure")
 import requests
 
-url = 'https://raw.githubusercontent.com/user/repo/branch/path/to/file.csv'
+url = 'house_building_expenditure.csv'
 
 response = requests.get(url)
 
