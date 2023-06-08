@@ -7,7 +7,6 @@ st.title("house_expenditure")
 #data=pd.read_csv("house_building_expenditure.csv")
 #print(data)
 #data
-
 import streamlit as st
 import pandas as pd
 
@@ -30,13 +29,13 @@ def calculate_expenses():
 # Create Streamlit app
 st.title("Expense Calculator")
 
-# Date range input fields
-start_date_input = st.text_input("Start Date (YYYY-MM-DD):")
-end_date_input = st.text_input("End Date (YYYY-MM-DD):")
-attribute_input = st.text_input("Attribute:")
+# Sidebar input fields
+start_date_input = st.sidebar.text_input("Start Date (YYYY-MM-DD):")
+end_date_input = st.sidebar.text_input("End Date (YYYY-MM-DD):")
+attribute_input = st.sidebar.text_input("Attribute:")
 
 # Calculate button
-calculate_button = st.button("Calculate", on_click=calculate_expenses)
+calculate_button = st.sidebar.button("Calculate", on_click=calculate_expenses)
 
 # Result area
 st.markdown("---")
