@@ -7,6 +7,8 @@ st.title("house_expenditure")
 #data=pd.read_csv("house_building_expenditure.csv")
 #print(data)
 #data
+pip install tkinter
+
 
 # Read the CSV file
 import tkinter as tk
