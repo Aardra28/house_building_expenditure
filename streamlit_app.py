@@ -1,14 +1,12 @@
 import streamlit as st
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 st.title("house_expenditure")
 
 #data=pd.read_csv("house_building_expenditure.csv")
 #print(data)
 #data
-
-import pandas as pd
-import matplotlib.pyplot as plt
 
 # Read the CSV file
 df = pd.read_csv('house_building_expenditure.csv')
