@@ -51,12 +51,7 @@ def home():
 def update():
     st.markdown("<h1>Update Selection</h1>", unsafe_allow_html=True)
     st.write("to make changes..")
-    
-    uploaded_file = st.file_uploader("Choose your database", accept_multiple_files=False)
-    if uploaded_file is not None:
-        data = pd.read_csv(uploaded_file)
-    else:
-        data = pd.read_csv("house_building_expenditure.csv")
+    data = pd.read_csv("house_building_expenditure.csv")
         
     data['Date'] = pd.to_datetime(data['Date'])
     data.set_index('Date', inplace=True)
