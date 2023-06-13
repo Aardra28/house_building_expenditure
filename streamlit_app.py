@@ -4,16 +4,7 @@ import altair as alt
 import datetime
 
 def main():
-    st.markdown(
-        """
-        <style>
-        .reportview-container {
-            background: linear-gradient(rgba(69, 20, 90, 0.8), rgba(117, 38, 115, 0.8));
-        }
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
+    
     navigation = st.sidebar.radio(options=["About", "Home", "Update"], label="Navigation", index=get_navigation_index())
 
     if navigation == 'About':
