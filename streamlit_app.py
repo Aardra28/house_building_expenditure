@@ -12,7 +12,6 @@ def main():
         home()
     elif navigation == 'Update':
         update()
-
 def get_navigation_index():
     navigation = st.experimental_get_query_params().get("navigation", ["About"])
     if navigation[0] == "Home":
