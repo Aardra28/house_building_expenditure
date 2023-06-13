@@ -52,7 +52,7 @@ def home():
 def update():
     st.markdown("<h1>Update Selection</h1>", unsafe_allow_html=True)
     st.write("to make changes..")
-    data = pd.read_csv("/home/aardra/Downloads/house_building_expenditure.csv")
+    data = pd.read_csv("house_building_expenditure.csv")
     data['Date'] = pd.to_datetime(data['Date'])
     data.set_index('Date', inplace=True)
 
