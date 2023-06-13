@@ -3,11 +3,12 @@ import pandas as pd
 import altair as alt
 import datetime
 
-primaryColor="#F63366"
-backgroundColor="#FFFFFF"
-secondaryBackgroundColor="#F0F2F6"
-textColor="#262730"
-font="sans serif"
+CURRENT_THEME = "light"
+IS_DARK_THEME = False
+EXPANDER_TEXT = """
+    This is Streamlit's default *Light* theme. It should be enabled by default 🎈
+    If not, you can enable it in the app menu (☰ -> Settings -> Theme).
+    """
 def main():
     navigation = st.sidebar.radio(options=["About", "Home", "Update"], label="Navigation", index=get_navigation_index())
 
