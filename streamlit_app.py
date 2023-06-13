@@ -3,7 +3,6 @@ import pandas as pd
 import altair as alt
 import datetime
 
-[theme]
 base="dark"
 def main():
     navigation = st.sidebar.radio(options=["About", "Home", "Update"], label="Navigation", index=get_navigation_index())
