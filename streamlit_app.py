@@ -97,7 +97,7 @@ def home():
     font_size=30,
     falling_speed=2,
     animation_length=1.5,
-    animation_length="infinite",
+    #animation_length="infinite",
 )
 
 #st.markdown(
