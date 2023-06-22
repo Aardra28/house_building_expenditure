@@ -277,18 +277,20 @@ def update():
     if update_option == 'Add entries':
         st.header("Add New Data")
         new_date = st.date_input("Choose the date", datetime.date(2023, 7, 6))
-        new_date_with_time = pd.to_datetime(new_date).strftime('%Y-%m-%d %H:%M:%S')  # Convert to datetime format
+        new_date_with_time = pd.to_datetime(new_date).strftime('%Y-%m-%d %H:%M:%S') 
 
         columns = list(data.columns)
-        columns.append("Add New Feature")  # Add an option to add a new feature
+        columns.append("Add New Feature")  
         new_feature = st.selectbox('Select a feature', columns)
 
         if new_feature == "Add New Feature":
-            new_feature = st.text_input("Enter the new feature")  # Prompt for the new feature name
+            new_feature = st.text_input("Enter the new feature")  
+            new_cost = st.number_input("Enter the cost")
 
-        if new_feature != "Add New Feature":  # Proceed only if a feature is selected or a new feature name is provided
-            if new_feature not in data.columns:  # Check if the selected feature already exists in the dataset
+        if new_feature != "Add New Feature":              
+            #if new_feature not in data.columns: 
                 new_cost = st.number_input("Enter the cost")
+
 
                 if st.button("Add Data"):
                     data.at[new_date_with_time, new_feature] = new_cost
