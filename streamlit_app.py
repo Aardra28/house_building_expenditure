@@ -21,8 +21,8 @@ def get_img_as_base64(file):
     return base64.b64encode(data).decode()
 
 
-img = get_img_as_base64("/home/aardra/Downloads/f4e2e1.png")
-imga = get_img_as_base64("/home/aardra/Downloads/image2.jpg")
+img = get_img_as_base64("f4e2e1.png")
+imga = get_img_as_base64("image2.jpg")
 
 
 page_bg_img = f"""
