@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import altair as alt
 import datetime
-#import rain
+import rain
 import base64
 import streamlit.components.v1 as components
 import option_menu
