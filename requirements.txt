@@ -1,6 +1,6 @@
-streamlit_extras==0.74.0
-streamlit==0.68.1
-pandas==0.25.3
+streamlit_extras==0.2.7
+streamlit==1.23.1
+pandas==2.0.2
 base58==2.0.0
-matplotlib==3.1.3
-numpy==1.18.1
+matplotlib==3.7.1
+numpy==1.24.3
