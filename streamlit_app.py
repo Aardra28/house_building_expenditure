@@ -171,7 +171,7 @@ def Main():
                     non_null_data[column] = non_null_data[column].str.replace('"', '').str.replace(',', '').astype(float)
 
             non_zero_data = non_null_data.loc[:, (non_null_data != 0).any()]
-            st.write(non_zero_data)
+            #st.write(non_zero_data)
 
             chart_data = filtered_data.reset_index().melt('Date', var_name='Feature', value_name='Cost')
 
