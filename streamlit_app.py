@@ -249,6 +249,7 @@ def update():
                     data.to_csv("house_building_expenditure.csv", index=False)
                     st.success("Data added successfully!")
                     st.write(data)
+                    st.snow()
         
     elif update_option == 'Remove entries':
         st.header("Remove Data")
