@@ -1,2 +1,0 @@
-streamlit_extras==0.74.0
-
