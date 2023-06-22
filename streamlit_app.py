@@ -246,7 +246,7 @@ def update():
                 if st.button("Add Data"):
                     data.at[new_date_with_time, new_feature] = new_cost
                     data.reset_index(inplace=True)
-                    data.to_csv("/home/aardra/Downloads/house_building_expenditure.csv", index=False)
+                    data.to_csv("house_building_expenditure.csv", index=False)
                     st.success("Data added successfully!")
                     st.write(data)
         
