@@ -115,15 +115,15 @@ def home():
         #    unsafe_allow_html=True,
         #)
 
-def Main():
+ddef Main():
     data = pd.read_csv("house_building_expenditure.csv")
     data['Date'] = pd.to_datetime(data['Date'])
     data.set_index('Date', inplace=True)
 
     st.header("Calculate the amount")
-    option = st.selectbox('Select an option', ('Select the date','Select date range', 'Select feature'))
+    option = st.selectbox('Select an option', ('Select the date', 'Select date range', 'Select feature'))
 
-    if option=="Select the date":
+    if option == "Select the date":
         date_i = st.date_input("Choose the date", datetime.date(2023, 7, 6))
         fil = data.loc[data.index == pd.to_datetime(date_i)]
         amount = fil.sum().sum()
@@ -135,7 +135,6 @@ def Main():
 
         st.markdown(f"<h1 class='title-text'>{amount}</h1>", unsafe_allow_html=True)
 
-
         non_zero_features = fil.columns[fil.any()]
 
         for feature in non_zero_features:
@@ -143,49 +142,56 @@ def Main():
             for value in values:
                 if value != 0:
                     st.write(f"{feature}: {value}")
-        
+
     elif option == 'Select date range':
-        start_date = st.date_input("Select a start date")
-        end_date = st.date_input("Select an end date")
+        # Code for date range selection and visualization
 
-        start_datetime = pd.to_datetime(start_date)
-        end_datetime = pd.to_datetime(end_date)
+    elif option == 'Select feature':
+        selected_feature_name = st.selectbox("Select a Feature", data.columns[data.columns != 'Date'])
+        feature_data = data[selected_feature_name]
+        feature_sum = feature_data.sum()
 
-        filtered_data = data.loc[(data.index >= start_datetime) & (data.index <= end_datetime)]
-        amount = filtered_data.sum().sum()
-    
-        st.write("Total Amount:")
+        st.write(f"Total Amount for {selected_feature_name}:")
         st.markdown(
-            f"<style>.title-text{{color:BLACK;}}</style>",
+            f"<style>.title-text{{color: BLACK;}}</style>",
             unsafe_allow_html=True
         )
+        st.markdown(f"<h1 class='title-text'>{feature_sum}</h1>", unsafe_allow_html=True)
 
-        st.markdown(f"<h1 class='title-text'>{amount}</h1>", unsafe_allow_html=True)
+        selected_dates = data.loc[(data[selected_feature_name] != 0) & data[selected_feature_name].notnull()].index
+        selected_dates = [date.strftime('%b %d') for date in selected_dates]
 
-        if not filtered_data.empty:
-            st.write("Features and Costs for Selected Date Range:")
-            non_null_data = filtered_data.dropna(how='all')
+        st.write("Dates when the feature was brought:")
+        for date in selected_dates:
+            st.write(date)
 
-            for column in non_null_data.columns:
-                if non_null_data[column].dtype == 'object':
-                    non_null_data[column] = non_null_data[column].str.replace('"', '').str.replace(',', '').astype(float)
+        # Option to update cost for a specific date and feature
+        if st.button("Update Cost"):
+            update_date = st.date_input("Select a date to update", datetime.date(2023, 7, 6))
+            update_date_with_time = pd.to_datetime(update_date).strftime('%Y-%m-%d %H:%M:%S')
 
-            non_zero_data = non_null_data.loc[:, (non_null_data != 0).any()]
-            #st.write(non_zero_data)
+            if update_date_with_time in data.index:
+                new_cost = st.number_input("Enter the updated cost")
+                data.at[update_date_with_time, selected_feature_name] = new_cost
+                data.reset_index(inplace=True)
+                data.to_csv("house_building_expenditure.csv", index=False)
+                st.success("Cost updated successfully!")
+            else:
+                st.error("Invalid date selection. Please choose a valid date.")
 
-            chart_data = filtered_data.reset_index().melt('Date', var_name='Feature', value_name='Cost')
+        selected_cost = data.loc[(data[selected_feature_name] != 0) & data[selected_feature_name].notnull(), selected_feature_name]
+        plot_data = pd.DataFrame({'Date': selected_dates, 'Cost': selected_cost})
 
-            line_chart = alt.Chart(chart_data).mark_line().encode(
-                x='Date:T',
-                y='Cost:Q',
-                color=alt.Color('Feature:N', scale=alt.Scale(scheme='category20')),
-                tooltip=['Feature', 'Cost']
-            ).properties(
-                width=600,
-                height=400
-            ).interactive()
-            st.altair_chart(line_chart, use_container_width=True)
-            
+        chart = alt.Chart(plot_data).mark_circle(color='red', opacity=1).encode(
+            x=alt.X('Date:T', axis=alt.Axis(format='%b %d')),
+            y='Cost:Q',
+            tooltip=['Date', 'Cost']
+        ).properties(
+            width=600,
+            height=400
+        )
+
+        st.altair_chart(chart)
 
     elif option == 'Select feature':
         selected_feature_name = st.selectbox("Select a Feature", data.columns[data.columns != 'Date'])
@@ -249,7 +255,6 @@ def update():
                     data.to_csv("house_building_expenditure.csv", index=False)
                     st.success("Data added successfully!")
                     st.write(data)
-                    st.snow()
         
     elif update_option == 'Remove entries':
         st.header("Remove Data")
