@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import altair as alt
 import datetime
-from streamlit_extras.let_it_rain import rain
+#from streamlit_extras.let_it_rain import rain
 import plotly.express as px
 import base64
 import streamlit.components.v1 as components
@@ -92,11 +92,11 @@ def home():
     #elif st.button('  MAKE ANY  UPDATES  '):
         #st.experimental_set_query_params(navigation="Update")
 
-    rain(
-    emoji="🌸",
-    font_size=30,
-    falling_speed=2,
-    animation_length=1.5,
+    #rain(
+    #emoji="🌸",
+    #font_size=30,
+    #falling_speed=2,
+    #animation_length=1.5,
     #animation_length="infinite",
 )
 
