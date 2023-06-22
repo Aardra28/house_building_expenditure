@@ -2,10 +2,10 @@ import streamlit as st
 import pandas as pd
 import altair as alt
 import datetime
-import rain
+from streamlit_extras.let_it_rain import rain
 import base64
 import streamlit.components.v1 as components
-import option_menu
+from streamlit_option_menu import option_menu
 
 st.set_page_config(
     page_title="HOUSE PRICE ESTIMATION",
