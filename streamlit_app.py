@@ -297,7 +297,8 @@ def update():
                     data.reset_index(inplace=True)
                     data.to_csv("house_building_expenditure.csv", index=False)
                     st.success("Data added successfully!")
-                    st.write(data)
+                    #st.write(data)
+                    st.balloons()
         
     elif update_option == 'Remove entries':
         st.header("Remove Data")
@@ -315,7 +316,7 @@ def update():
                 data.reset_index(inplace=True)  # Reset the index
                 data.to_csv("house_building_expenditure.csv", index=False)
                 st.success("Data removed successfully!")
-                st.write(data)
+                #st.write(data)
             else:
                 st.error("Invalid feature selection. Please choose a valid feature.")
             st.snow()
