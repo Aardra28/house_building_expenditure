@@ -53,7 +53,7 @@ right: 2rem;
 """
 
 st.markdown(page_bg_img, unsafe_allow_html=True)
-data = pd.read_csv("/home/aardra/Downloads/house_building_expenditure.csv")
+data = pd.read_csv("house_building_expenditure.csv")
 
 def main():
     with st.sidebar:
@@ -116,7 +116,7 @@ def home():
         #)
 
 def Main():
-    data = pd.read_csv("/home/aardra/Downloads/house_building_expenditure.csv")
+    data = pd.read_csv("house_building_expenditure.csv")
     data['Date'] = pd.to_datetime(data['Date'])
     data.set_index('Date', inplace=True)
 
@@ -220,7 +220,7 @@ def Main():
 def update():
     st.markdown("<h1>Update Selection</h1>", unsafe_allow_html=True)
     st.write("to make changes..")
-    data = pd.read_csv("/home/aardra/Downloads/house_building_expenditure.csv")
+    data = pd.read_csv("house_building_expenditure.csv")
     data['Date'] = pd.to_datetime(data['Date'])
     data.set_index('Date', inplace=True)
     st.header("Add and Remove Data")
@@ -264,7 +264,7 @@ def update():
                 data = data.loc[:, data.notnull().any()]
                 data = data.dropna(axis=0, how='all')  # Remove rows with all None values
                 data.reset_index(inplace=True)  # Reset the index
-                data.to_csv("/home/aardra/Downloads/house_building_expenditure.csv", index=False)
+                data.to_csv("house_building_expenditure.csv", index=False)
                 st.success("Data removed successfully!")
                 st.write(data)
             else:
