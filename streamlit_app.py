@@ -3,7 +3,7 @@ import pandas as pd
 import altair as alt
 import datetime
 from streamlit_extras.let_it_rain import rain
-#import plotly.express as px
+import plotly.express as px
 import base64
 import streamlit.components.v1 as components
 from streamlit_option_menu import option_menu
