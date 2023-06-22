@@ -115,7 +115,7 @@ def home():
         #    unsafe_allow_html=True,
         #)
 
-ddef Main():
+def Main():
     data = pd.read_csv("house_building_expenditure.csv")
     data['Date'] = pd.to_datetime(data['Date'])
     data.set_index('Date', inplace=True)
