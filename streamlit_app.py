@@ -144,7 +144,48 @@ def Main():
                     st.write(f"{feature}: {value}")
 
     elif option == 'Select date range':
-        # Code for date range selection and visualization
+        start_date = st.date_input("Select a start date")
+        end_date = st.date_input("Select an end date")
+
+        start_datetime = pd.to_datetime(start_date)
+        end_datetime = pd.to_datetime(end_date)
+
+        filtered_data = data.loc[(data.index >= start_datetime) & (data.index <= end_datetime)]
+        amount = filtered_data.sum().sum()
+    
+        st.write("Total Amount:")
+        st.markdown(
+            f"<style>.title-text{{color:BLACK;}}</style>",
+            unsafe_allow_html=True
+        )
+
+        st.markdown(f"<h1 class='title-text'>{amount}</h1>", unsafe_allow_html=True)
+
+        if not filtered_data.empty:
+            st.write("Features and Costs for Selected Date Range:")
+            non_null_data = filtered_data.dropna(how='all')
+
+            for column in non_null_data.columns:
+                if non_null_data[column].dtype == 'object':
+                    non_null_data[column] = non_null_data[column].str.replace('"', '').str.replace(',', '').astype(float)
+
+            non_zero_data = non_null_data.loc[:, (non_null_data != 0).any()]
+            st.write(non_zero_data)
+
+            chart_data = filtered_data.reset_index().melt('Date', var_name='Feature', value_name='Cost')
+
+            line_chart = alt.Chart(chart_data).mark_line().encode(
+                x='Date:T',
+                y='Cost:Q',
+                color=alt.Color('Feature:N', scale=alt.Scale(scheme='category20')),
+                tooltip=['Feature', 'Cost']
+            ).properties(
+                width=600,
+                height=400
+            ).interactive()
+            st.altair_chart(line_chart, use_container_width=True)
+            
+
 
     elif option == 'Select feature':
         selected_feature_name = st.selectbox("Select a Feature", data.columns[data.columns != 'Date'])
