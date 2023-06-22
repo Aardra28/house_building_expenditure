@@ -237,7 +237,7 @@ def update():
         new_feature = st.selectbox('Select a feature', columns)
 
         if new_feature == "Add New Feature":
-            new_feature = st.text_input("Enter the name of the new feature")  # Prompt for the new feature name
+            new_feature = st.text_input("Enter the new feature")  # Prompt for the new feature name
 
         if new_feature != "Add New Feature":  # Proceed only if a feature is selected or a new feature name is provided
             if new_feature not in data.columns:  # Check if the selected feature already exists in the dataset
